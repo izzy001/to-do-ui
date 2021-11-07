@@ -1,0 +1,66 @@
+<div *ngIf="taskList?.data;else noContent">
+  <h2 > Task board for {{taskList.data.user.name}}</h2>
+  <div class="table-responsive" *ngIf="taskList.data">
+      <table class="table">
+          <thead>
+              <tr>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
+                <th scope="col">State</th>
+                <th scope="col">  <button type="button" class="btn btn-primary" (click)="openExistingTask(content)">Click here to add task for user</button></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let task of taskList.data.tasks; let i=index">
+                <td>{{task.description}}</td>
+                <td class="overflow-hidden">
+                    <select #state [value]="task.state" (change)="updateTaskStatus(task._id, state.value)">
+                      <option value="task.state" selected disabled> {{task.state}}</option>
+                      <option value="To-Do">to-do</option>
+                      <option value="done">done</option>
+                    </select>
+                </td>
+                <td><span class="badge bg-secondary">{{task.state}}</span></td>
+              </tr>
+            </tbody>
+      </table>
+    </div>
+  
+  </div>
+
+<ng-template #noContent>
+  <div class="row" >
+    <h3 >No task found for this user</h3>
+    <div>
+      <button type="button" class="btn btn-primary" (click)="open(content)">Click here to add task for user</button>
+    </div>
+  </div>
+</ng-template>
+ 
+
+  <div class="d-flex justify-content-center mt-5">
+    <button routerLink="/users" type="button" class="btn btn-primary">Go back to users</button>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add 
+        Task</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <div class="input-group">
+          <input id="description" class="form-control" placeholder="Enter a task"  #description >
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(description.value)">Add Task</button>
+  </div>
+</ng-template>
