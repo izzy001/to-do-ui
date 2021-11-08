@@ -7,7 +7,7 @@
                 <th scope="col">Description</th>
                 <th scope="col">Action</th>
                 <th scope="col">State</th>
-                <th scope="col">  <button type="button" class="btn btn-primary" (click)="openExistingTask(content)">Click here to add task for user</button></th>
+                <th scope="col">  <button type="button" class="btn btn-success" (click)="openExistingTask(content)">Click here to add task for user</button></th>
               </tr>
             </thead>
             <tbody>
@@ -32,14 +32,14 @@
   <div class="row" >
     <h3 >No task found for this user</h3>
     <div>
-      <button type="button" class="btn btn-primary" (click)="open(content)">Click here to add task for user</button>
+      <button type="button" class="btn btn-success" (click)="open(content)">Click here to add task for user</button>
     </div>
   </div>
 </ng-template>
  
 
   <div class="d-flex justify-content-center mt-5">
-    <button routerLink="/users" type="button" class="btn btn-primary">Go back to users</button>
+    <button routerLink="/users" type="button" class="btn btn-secondary">Go back to users</button>
 </div>
 
 <ng-template #content let-modal>
